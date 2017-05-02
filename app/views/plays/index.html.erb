@@ -1,7 +1,7 @@
+<% if user_signed_in? %>
 <% @plays.each do |ply| %>
 <h1><%= link_to (ply.title) , play_path(ply)%></h1>
 <blockquote>by: <%= ply.director %></blockquote>
 
 <% end %>
-
-<%= link_to "createNewPlay" ,new_play_path() %> 
+<% end %> 

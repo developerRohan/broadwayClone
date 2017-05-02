@@ -9,11 +9,31 @@
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<div class="container">
-	<%= yield %>
-</div>
-    
+  <nav class="nav navbar-default">
+  	<div class="container">
+  		<div class="navbar-header">
+  			<%=link_to "Broadway" , root_path , class: "navbar-brand" %>
+  		</div>
+  		<ul class="nav navbar-nav navbar-right">
+  			<% if user_signed_in? %>
+  				<li><%= link_to"SignOut" , destroy_user_session_path , method: :delete %><li>
+  			<% else %>
+  				<li><%= link_to"SignUp" , new_user_registration_path  %><li>
+  				<li><%= link_to"LogIn" , new_user_session_path  %><li>
+  			<% end %>
+  		</ul>
+  		<ul class="nav navbar-nav">
+  			<% if user_signed_in? %>
+  			<li><%= link_to "AddPlay" , new_play_path %></li>
+			<% end %>  		
+  		</ul>
+  	</div>
+  </nav>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<div class="container">
+		<%= yield %>
+	</div>
+	    
   </body>
 </html>

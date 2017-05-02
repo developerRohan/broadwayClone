@@ -3,6 +3,15 @@
 <b>by: <%= @play.director %></b>
 <br>
 <br>
+
+<div class="links btn-group">
+<% if user_signed_in? %>
+<% if @play.user_id == current_user.id %>
 <%= link_to 'delete this play' ,play_path(@play), method: :delete  , data: {confirm: "Are You Sure?"}  %>
 <br>
 <%= link_to 'edit this play' , edit_play_path(@play) %>
+
+<% end %>
+<% end %>
+
+</div>

@@ -1,4 +1,5 @@
 class Category < ApplicationRecord
-belongs_to :user
+validates :name , presence: true 
+validates_uniqueness_of :name
 has_many :plays
 end

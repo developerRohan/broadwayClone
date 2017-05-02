@@ -1,4 +1,15 @@
+<div class="errors">
+	<% if @play.errors.any? %>
+		<h2>the following errors have been addressed</h2>
+		<ul>
+			<% @play.errors.full_messages.each do|msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+</div>
 <%= simple_form_for @play do |f| %>
+<%= select_tag(:category_id , options_for_select(@categories) , :prompt => "seLect a catEgory") %>
   <%= f.input :title , label: "Play Title"%>
   <%= f.input :description %>
   <%= f.input :director %>

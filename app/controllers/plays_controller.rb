@@ -1,18 +1,35 @@
 class PlaysController < ApplicationController
 	before_action :find_play , only: [:show , :edit , :update , :destroy]
 	def index
-		@plays = Play.all.order("created_at DESC")
+		if params[:category].blank?
+			@plays = Play.all.order("created_at DESC")
+		# elseif params[:category].name == all
+		# 	@plays = Play.all.order("created_at DESC")
+		else
+			@category_id = Category.find_by(name:params[:category]).id
+			@plays = Play.where(:category_id => @category_id).order("created_at DESC")
+		end
+
 	end
 
 	def new
 		@play = current_user.plays.build
+		@categories = Category.all.map{ |c| [c.name , c.id]}
 	end
 
 	def show
 	end
 
+	def edit
+		@categories = Category.all.map{|c| [c.name , c.id]}
+	end
+
 	def create
+		@categories = Category.all.map{ |c| [c.name , c.id]}
+
 		@play = current_user.plays.build(play_params)
+		@play.category_id = params[:category_id]
+		#byebug 
 		if @play.save
 			redirect_to root_path
 		else
@@ -21,6 +38,10 @@ class PlaysController < ApplicationController
 	end
 
 	def update
+		@categories = Category.all.map{|c| [c.name , c.id]}
+
+		@play.category_id = params[:category_id]
+
 		if @play.update(play_params)
 			redirect_to play_path(@play)
 		else
@@ -33,10 +54,12 @@ class PlaysController < ApplicationController
 		redirect_to plays_path()
 	end
 
+
+
 	private
 
 	def play_params
-		params.require(:play).permit(:title , :description , :director)
+		params.require(:play).permit(:title , :description , :director , :category_id)
 	end
 
 	def find_play

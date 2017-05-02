@@ -1,3 +1,8 @@
 <h1><%= @play.title %></h1>
 <h3><%= @play.description %></h3>
 <b>by: <%= @play.director %></b>
+<br>
+<br>
+<%= link_to 'delete this play' ,play_path(@play), method: :delete  , data: {confirm: "Are You Sure?"}  %>
+<br>
+<%= link_to 'edit this play' , edit_play_path(@play) %>

@@ -8,11 +8,11 @@
 		</ul>
 	<% end %>
 </div>
-<%= simple_form_for @play do |f| %>
-<%= select_tag(:category_id , options_for_select(@categories) , :prompt => "seLect a catEgory") %>
-<%=f.file_field :play_img %>
-  <%= f.input :title , label: "Play Title"%>
-  <%= f.input :description %>
-  <%= f.input :director %>
-  <%= f.button :submit %>
+<%= simple_form_for @play ,:html => { multipart: true , :class => "form-horizontal image" } do |f|  %>
+	<%= select_tag(:category_id , options_for_select(@categories) , :prompt => "seLect a catEgory") %>
+	<%=f.file_field :play_img %>
+  	<%= f.input :title , label: "Play Title"%>
+  	<%= f.input :description %>
+  	<%= f.input :director %>
+  	<%= f.button :submit %>
 <% end %>

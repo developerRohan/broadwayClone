@@ -1,3 +1,13 @@
+<div class="errors">
+	<% if @review.errors.any? %>
+		<h2>the following errors have been addressed</h2>
+		<ul>
+			<% @review.errors.full_messages.each do|msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+</div>
 <%= simple_form_for([@play,@play.reviews.build]) do |f| %>
 	<div class="raitng-form">
 		<%= f.input :rating %>

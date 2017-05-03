@@ -1,16 +1,22 @@
-<h1><%= @play.title %></h1>
-<h3><%= @play.description %></h3>
-<b>category:<%= @play.category.name  if @play.category_id %></b><br>
-<b>by: <%= @play.director %></b>
+<div class="row">
+	<div class="col-md-4">
+		<%= image_tag @play.play_img.url(:play_index) , class: "play" %>
+	</div>
+	<div class="col-md-8" >
+		<h1><%= @play.title %></h1>
+		<h3><%= @play.description %></h3>
+		<b>category:<%= @play.category.name  if @play.category_id %></b><br>
+		<b>by: <%= @play.director %></b>
+	</div>
+</div>
 <br>
 <br>
 
 <div class="links btn-group">
 <% if user_signed_in? %>
 <% if @play.user_id == current_user.id %>
-<%= link_to 'delete this play' ,play_path(@play), method: :delete  , data: {confirm: "Are You Sure?"}  %>
-<br>
-<%= link_to 'edit this play' , edit_play_path(@play) %>
+<%= link_to 'delete this play' ,play_path(@play), method: :delete  , data: {confirm: "Are You Sure?"}  , class: "btn btn-danger btn-sm" %>
+<%= link_to 'edit this play' , edit_play_path(@play) , class: "btn btn-warning btn-sm" %>
 
 <% end %>
 <% end %>

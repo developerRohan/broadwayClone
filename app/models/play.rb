@@ -1,6 +1,7 @@
 class Play < ApplicationRecord
 belongs_to :user
 belongs_to :category
+has_many :reviews
 validates :title , presence: true , length: {minimum: 3 , maximum: 50} 
 validates :description , presence: true , length: {minimum: 50 , maximum: 5000}
 validates :director , presence: true , length: {minimum: 5 , maximum: 50} 

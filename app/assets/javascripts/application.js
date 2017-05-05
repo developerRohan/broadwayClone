@@ -15,4 +15,27 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require_tree .
+//= require jquery.raty
+//= require_tree 
+
+function onBodyLoad() {
+
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+
+	$('#rating-form').raty({
+		path: '/assets/',
+		scoreName: 'review[rating]'
+	});
+}
+
+window.addEventListener("load", function(event) {
+    onBodyLoad();
+});
+	
+
